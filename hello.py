@@ -20,29 +20,15 @@ def css():
 def result():
 	return jsonify(getResult())
 
-# Internal Methods #
-
-import random, datetime
-from flask import Flask, jsonify, render_template, send_from_directory, url_for
-from functools import reduce
-
-app = Flask(__name__)
-
-@app.route('/')
-def index():
-	return send_from_directory("public", "index.html")
-
-@app.route('/js')
-def js():
-	return send_from_directory("public", "buehler.js")
-
-@app.route('/css')
-def css():
-	return send_from_directory("public", "style.css")
-
-@app.route('/result')
-def result():
-	return jsonify(getResult())
+@app.after_request
+def add_header(response):
+    """
+    Add headers to both force latest IE rendering engine or Chrome Frame,
+    and also to cache the rendered page for 10 minutes.
+    """
+    response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
+    response.headers['Cache-Control'] = 'public, max-age=0'
+    return response
 
 # Internal Methods #
 
