@@ -1,27 +1,26 @@
 <!doctype html>
 <html ng-app="buehlerApp">
     <head>
-        <title>Bühler Challenge</title>
+        <title>Crop contamination detector</title>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
         <script src="http://localhost:5000/js"></script>
         <link href="http://localhost:5000/css" rel="stylesheet" />
+        <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
     </head>
     <body>
         <div ng-controller="buehlerController">
             <div id="intro">
-                <h1>Bühler Challenge</h1>
+                <h1>Crop contamination detector</h1>
                 <p>Blabliblablub</p>
                 <button ng-click="getResult()">Test new Sample</button>
             </div>
-            <div id="scan">
-                <img id="sample" ng-src="http://localhost:5000{{result.image_url}}" />
-            </div>
             <div id="result">
-                <h1>Results</h1>
+                <h2>Results</h2>
                 <p id="timestamp">Results calculated at {{result.time}}</p>
                 <p id="contamination_result">Sample is <em>{{result.contaminated ? "contaminated" : "clean"}}.</em></p>
-                <h2>Overall occurance</h2>
+                <h3>Overall contamination occurance</h3>
                 <table>
                     <tr><td>Clean</td><td>{{result.overall.clean | percentage:2}}</td></tr>
                     <tr><td>Straw</td><td>{{result.overall.straw | percentage:2}}</td></tr>
@@ -34,8 +33,61 @@
                 </table>
                 <p>Hover over image for contamination details and certainty</p>
             </div>
+            <div id="scan">
+                <img id="sample" ng-src="http://localhost:5000{{result.image_url}}" />
+            </div>
+            <div id="info">
+                <div class="info-box">
+                    <h2>Challenge</h2>
+                    <img src="static/buehler.jpg" id="buehlerlogo" /> 
+                    <h3>#13 SAFE GRAIN – SAFE FOOD</h3>
+                    <a href="http://www.buhlergroup.com/global/en/home.htm">Bühler AG</a><br />
+                    Work with Bühler and help to feed the world! 30% of all cereal grains get lost from field to fork. Early detection of grain contamination is crucial to prevent food loss.
+                    Your challenge:
+                    Develop a solution to detect grain contamination in given samples. Quantify and visualize contamination levels.
+                    The grain value chain is dealing with various types of contamination: insects or rodents, fungi, minerals, or other foreign materials. Existing detection methods can be time consuming, any delays to detection of a contaminant can cause unnecessary wastage of the raw material.
+                    Use the sensor material provided, let your creativity run wild and disrupt the status quo! Build a sensing solution that can really make a difference to feeding the worlds growing population.
+                    We will provide …
+                    Plastic containers containing grains with various types of contaminations (all non-toxic to humans). Each container will have one specific type of contamination. One container will contain the reference sample without any contamination.
+                    Sensor kit (sensors, lighting, cameras, Raspberry Pi, cables, …) to find suitable detection and quantification method
+                    Mentorship by Bühler experts
+                    You will provide…
+                    Imagination and creativity and innovation
+                    Each team is provided with all the components you need to analyse the grain samples.
+                    All you have to do is to join it all together, carry out some image analysis, and provide a report of the results. You could carry out the whole solution on the Raspberry Pi, or, you could make use of smart phone, web based technologies, or what-ever else you can think of.
+                </div>
+                <div class="info-box">
+                    <h2>Technology</h2>
+                    <h3>Hardware</h3>
+                    <ul>
+                        <li><a href="https://www.raspberrypi.org/">Raspberry Pi 3 Model 3</a></li>
+                        <li><a href="https://www.raspberrypi.org/">Raspberry Pi Camera V2</a></li>
+                    </ul>
+                    <h3>Software</h3>
+                    <h4>Back-End</h4>
+                    <ul>
+                        <li><a href="flask.pocoo.org">Flask</a></li>
+                        <li><a href="https://www.tensorflow.org/">TensorFlow</a></li>
+                    </ul>
+                    <h4>Front-End</h4>
+                    <ul>
+                        <li><a href="https://angularjs.org/">AngularJS</a></li>
+                        <li><a href="https://jquery.com/">JQuery</a></li>
+                    </ul>
+                </div>
+                <div class="info-box">
+                    <h2>Team</h2>
+                    <ul>
+                        <li><a href="">Adrian Hirt</a></li>
+                        <li><a href="">David Enderlin</a></li>
+                        <li><a href="https://github.com/nycooookie/">Elwin Stephan</a></li>
+                        <li><a href="https://www.linkedin.com/in/alexmoeri/">Alexandre Moeri</a></li>
+                    </ul>
+                    Second year Computer Science students at the Swiss Federal Institute for Technology.
+                </div>
+            </div>
             <div id="footer">
-               HackZurich 2017 - Adrian Hirt, David Enderlin, Elwin Stephan, Alexandre Moeri
+               Done at the amazing <a href="http://hackzurich.ch/">HackZurich 2017</a>
             </div>
         </div>
     </body>
