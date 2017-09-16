@@ -4,17 +4,18 @@
         <title>Crop contamination detector</title>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
-        <script src="http://localhost:5000/js"></script>
-        <link href="http://localhost:5000/css" rel="stylesheet" />
-        <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+        <script src="/js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+        <link href="/css" rel="stylesheet" />
+        <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
     </head>
     <body>
-        <div ng-controller="buehlerController">
+        <div ng-controller="buehlerController" class="page">
             <div id="intro">
                 <h1>Crop contamination detector</h1>
                 <p>Blabliblablub</p>
-                <button ng-click="getResult()">Test new Sample</button>
+                <a ng-click="getResult()" class="button-green">Test new Sample</a>
             </div>
             <div id="result">
                 <h2>Results</h2>
@@ -34,7 +35,7 @@
                 <p>Hover over image for contamination details and certainty</p>
             </div>
             <div id="scan">
-                <img id="sample" ng-src="http://localhost:5000{{result.image_url}}" />
+                <img id="sample" ng-src="{{result.image_url}}" />
             </div>
             <div id="info">
                 <div class="info-box">
@@ -78,8 +79,8 @@
                 <div class="info-box">
                     <h2>Team</h2>
                     <ul>
-                        <li><a href="">Adrian Hirt</a></li>
-                        <li><a href="">David Enderlin</a></li>
+                        <li><a href="https://github.com/swatvi">Adrian Hirt</a></li>
+                        <li><a href="https://github.com/davue">David Enderlin</a></li>
                         <li><a href="https://github.com/nycooookie/">Elwin Stephan</a></li>
                         <li><a href="https://www.linkedin.com/in/alexmoeri/">Alexandre Moeri</a></li>
                     </ul>
