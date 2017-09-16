@@ -4,9 +4,9 @@
         <title>Crop contamination detector</title>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
-        <script src="http://localhost:5000/js"></script>
+        <script src="/js"></script>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
-        <link href="http://localhost:5000/css" rel="stylesheet" />
+        <link href="/css" rel="stylesheet" />
         <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
     </head>
@@ -35,7 +35,7 @@
                 <p>Hover over image for contamination details and certainty</p>
             </div>
             <div id="scan">
-                <img id="sample" ng-src="http://localhost:5000{{result.image_url}}" />
+                <img id="sample" ng-src="{{result.image_url}}" />
             </div>
             <div id="info">
                 <div class="info-box">
