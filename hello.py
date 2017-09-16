@@ -6,15 +6,15 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return send_from_directory("public", "index.html")
+	return send_from_directory("public", "index.html")
 
 @app.route('/js')
 def js():
-    return send_from_directory("public", "buehler.js")
+	return send_from_directory("public", "buehler.js")
 
 @app.route('/css')
 def css():
-    return send_from_directory("public", "style.css")
+	return send_from_directory("public", "style.css")
 
 @app.route('/result')
 def result():
@@ -30,15 +30,15 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return send_from_directory("public", "index.html")
+	return send_from_directory("public", "index.html")
 
 @app.route('/js')
 def js():
-    return send_from_directory("public", "buehler.js")
+	return send_from_directory("public", "buehler.js")
 
 @app.route('/css')
 def css():
-    return send_from_directory("public", "style.css")
+	return send_from_directory("public", "style.css")
 
 @app.route('/result')
 def result():
@@ -46,41 +46,41 @@ def result():
 
 # Internal Methods #
 
+categories = ['straw', 'stone', 'clean', 'pumpkin', 'red_beans', 'quinoa', 'lentils', 'dried_bean', 'fines']
+
 def analyize():
-    process = subprocess.Popen(['java', '-jar', 'grain.jar', 'static/image.png', '100'], stdout=subprocess.PIPE)
-    return json.loads(process.stdout.read())
+	process = subprocess.Popen(['java', '-jar', 'grain.jar', 'static/image.png', '100'], stdout=subprocess.PIPE)
+	return json.loads(process.stdout.read())
 
 def prepareData(result):
-    resultSet = set()
+	resultSet = set()
 
-    for value in result['slices']:
-        resultSet.add(value['category'])
+	for value in result['slices']:
+		resultSet.add(value['category'])
 
-    categories = list(resultSet)
+	categoryCount = dict.fromkeys(categories)
+	for key in categoryCount:
+		categoryCount[key] = 0
 
-    categoryCount = dict.fromkeys(categories)
-    for key in categoryCount:
-        categoryCount[key] = 0
+	total = 0
+	for value in result['slices']:
+		categoryCount[value['category']] += 1
+		total += 1
 
-    total = 0
-    for value in result['slices']:
-        categoryCount[value['category']] += 1
-        total += 1
+	for key, value in categoryCount.items():
+		categoryCount[key] = value / float(total)
 
-    for key, value in categoryCount.items():
-        categoryCount[key] = value / total
-
-    result = {
-        'categories': categories,
-        'image_url': url_for('static', filename='capture.jpg'),
-        'slices': result['slices'],
-        'time': datetime.datetime.now(),
-        'overall': categoryCount,
-        'contaminated': categoryCount['clean'] >= 0.6,
+	result = {
+		'categories': categories,
+		'image_url': url_for('static', filename='capture.jpg'),
+		'slices': result['slices'],
+		'time': datetime.datetime.now(),
+		'overall': categoryCount,
+		'contaminated': categoryCount['clean'] >= 0.6,
 		'slicing': result['slicing']
-    }
+	}
 
-    return result
+	return result
 
 def getResult():
 	result = analyize()
