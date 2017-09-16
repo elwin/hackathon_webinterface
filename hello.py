@@ -1,3 +1,27 @@
+import subprocess, json, random, datetime
+from flask import Flask, jsonify, render_template, send_from_directory, url_for
+from functools import reduce
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return send_from_directory("public", "index.html")
+
+@app.route('/js')
+def js():
+    return send_from_directory("public", "buehler.js")
+
+@app.route('/css')
+def css():
+    return send_from_directory("public", "style.css")
+
+@app.route('/result')
+def result():
+	return jsonify(getResult())
+
+# Internal Methods #
+
 import random, datetime
 from flask import Flask, jsonify, render_template, send_from_directory, url_for
 from functools import reduce
@@ -22,81 +46,42 @@ def result():
 
 # Internal Methods #
 
+def analyize():
+    process = subprocess.Popen(['java', '-jar', 'grain.jar', 'static/image.png', '100'], stdout=subprocess.PIPE)
+    return json.loads(process.stdout.read())
+
+def prepareData(result):
+    resultSet = set()
+
+    for value in result['slices']:
+        resultSet.add(value['category'])
+
+    categories = list(resultSet)
+
+    categoryCount = dict.fromkeys(categories)
+    for key in categoryCount:
+        categoryCount[key] = 0
+
+    total = 0
+    for value in result['slices']:
+        categoryCount[value['category']] += 1
+        total += 1
+
+    for key, value in categoryCount.items():
+        categoryCount[key] = value / total
+
+    result = {
+        'categories': categories,
+        #'image_url': url_for('static', filename='capture.jpg'),
+        'slices': result['slices'],
+        'time': datetime.datetime.now(),
+        'overall': categoryCount,
+        'contaminated': categoryCount['clean'] >= 0.6,
+		'slicing': result['slicing']
+    }
+
+    return result
+
 def getResult():
-	slices = []
-	for curTile in range(0, 16):
-		slices.append(analyse(curTile))
-
-	sliceValues = []
-	for slice in slices:
-		sliceValues.append(slice['values'])
-
-	average = averageSlices(sliceValues)
-
-	result = {
-		'image_url': url_for('static', filename='capture.jpg'),
-		'contaminated': contaminated(average),
-		'overall': average,
-		'slices': slices,
-		'slicing': {
-			'x_max': 4,
-			'y_max': 4
-		},
-		'time': datetime.datetime.now()
-	}
-
-	return result
-
-def analyse(tile):
-	slice = {
-		'coordinate' : {
-			'x': tile % 4,
-			'y': tile / 4,
-		},
-		'values': getRandomValues()
-	}
-
-	return slice
-
-def averageSlices(sliceValues):
-	result = reduce(lambda x, y: {
-		'clean': x['clean'] + y['clean'],
-		'straw': x['straw'] + y['straw'],
-		'pumpkin': x['pumpkin'] + y['pumpkin'],
-		'red_beans': x['red_beans'] + y['red_beans'],
-		'stones': x['stones'] + y['stones'],
-		'quinoa': x['quinoa'] + y['quinoa'],
-		'lentils': x['lentils'] + y['lentils'],
-		'dried_bean': x['dried_bean'] + y['dried_bean'],
-		'fines': x['fines'] + y['fines'],
-		}, sliceValues)
-
-	for key, value in result.items():
-		result[key] = value / len(sliceValues)
-
-	return result
-
-def contaminated(overall):
-	return overall['clean'] >= 0.1
-
-def getRandomValues():
-	values = {
-		'clean': random.random(),
-		'straw': random.random(),
-		'pumpkin': random.random(),
-		'red_beans': random.random(),
-		'stones': random.random(),
-		'quinoa': random.random(),
-		'lentils': random.random(),
-		'dried_bean': random.random(),
-		'fines': random.random()
-	}
-
-	sum = 0
-	for key, value in values.items():
-		sum += value
-
-	for key, value in values.items():
-		values[key] = value / sum
-
-	return values
+	result = analyize()
+	return prepareData(result)
