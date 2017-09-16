@@ -2,6 +2,7 @@
 <html ng-app="buehlerApp">
     <head>
         <title>Bühler Challenge</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
         <script src="http://localhost:5000/js"></script>
         <link href="http://localhost:5000/css" rel="stylesheet" />
@@ -10,19 +11,31 @@
         <div ng-controller="buehlerController">
             <div id="intro">
                 <h1>Bühler Challenge</h1>
+                <p>Blabliblablub</p>
+                <button ng-click="getResult()">Test new Sample</button>
             </div>
             <div id="scan">
+                <img id="sample" ng-src="http://localhost:5000{{result.image_url}}" />
             </div>
             <div id="result">
-                <span id="timestamp">Results calculated at {{result.time}}</span><br />
-                <span id="contamination_result">{{result.contaminated ? "Sample is contaminated." : "Sample is clean."}}<br />
+                <h1>Results</h1>
+                <p id="timestamp">Results calculated at {{result.time}}</p>
+                <p id="contamination_result">Sample is <em>{{result.contaminated ? "contaminated" : "clean"}}.</em></p>
+                <h2>Overall occurance</h2>
                 <table>
-                    <tr>
-                        <td>Clean</td>
-                        <td>{{result.overall.clean}}</td>
-                    </tr>
+                    <tr><td>Clean</td><td>{{result.overall.clean | percentage:2}}</td></tr>
+                    <tr><td>Straw</td><td>{{result.overall.straw | percentage:2}}</td></tr>
+                    <tr><td>Pumpkin Seeds</td><td>{{result.overall.pumpkin | percentage:2}}</td></tr>
+                    <tr><td>Red kidney beans</td><td>{{result.overall.red_beans | percentage:2}}</td></tr>
+                    <tr><td>Quinoa</td><td>{{result.overall.quinoa | percentage:2}}</td></tr>
+                    <tr><td>Black Lentils</td><td>{{result.overall.lentils | percentage:2}}</td></tr>
+                    <tr><td>Dried garden beans</td><td>{{result.overall.dried_bean | percentage:2}}</td></tr>
+                    <tr><td>Fines</td><td>{{result.overall.fines | percentage:2}}</td></tr>
+                </table>
+                <p>Hover over image for contamination details and certainty</p>
             </div>
             <div id="footer">
+               HackZurich 2017 - Adrian Hirt, David Enderlin, Elwin Stephan, Alexandre Moeri
             </div>
         </div>
     </body>
