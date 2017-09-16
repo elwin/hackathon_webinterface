@@ -1,5 +1,6 @@
 import random, datetime
 from flask import Flask, jsonify
+from functools import reduce
 app = Flask(__name__)
 
 @app.route('/')
