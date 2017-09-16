@@ -29,7 +29,7 @@ def getResult():
 	average = averageSlices(sliceValues)
 
 	result = {
-		'url': url_for('static', filename='image.png'),
+		'image_url': url_for('static', filename='image.png'),
 		'contaminated': contaminated(average),
 		'overall': average,
 		'slices': slices,
