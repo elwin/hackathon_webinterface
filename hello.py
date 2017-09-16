@@ -72,7 +72,7 @@ def prepareData(result):
 
     result = {
         'categories': categories,
-        #'image_url': url_for('static', filename='capture.jpg'),
+        'image_url': url_for('static', filename='capture.jpg'),
         'slices': result['slices'],
         'time': datetime.datetime.now(),
         'overall': categoryCount,
