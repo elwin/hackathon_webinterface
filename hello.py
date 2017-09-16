@@ -33,6 +33,11 @@ def add_header(response):
     response.headers['Cache-Control'] = 'public, max-age=0'
     return response
 
+@app.before_first_request
+def do_something_only_once():
+	camera = PiCamera()
+	sleep(1)
+
 # Internal Methods #
 
 categories = ['straw', 'stone', 'clean', 'pumpkin', 'red_beans', 'quinoa', 'lentils', 'dried_bean', 'fines']
@@ -72,8 +77,6 @@ def prepareData(result):
 	return result
 
 def getResult():
-	camera = PiCamera()
-	sleep(1)
 	camera.capture('/home/pi/web/static/capture.jpg')
 	result = analyize()
 	return prepareData(result)
