@@ -10,7 +10,6 @@ angular.module('buehlerApp', []).controller ('buehlerController', ['$scope', '$h
             console.log(e.pageX - this.offsetLeft);
             console.log(e.pageY - this.offsetTop);
         }); 
-    });
     };
     $scope.getResult();
 }]).filter('percentage', ['$filter', function ($filter) {

@@ -2,6 +2,7 @@
 <html ng-app="buehlerApp">
     <head>
         <title>Bühler Challenge</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
         <script src="http://localhost:5000/js"></script>
         <link href="http://localhost:5000/css" rel="stylesheet" />
@@ -14,7 +15,7 @@
                 <button ng-click="getResult()">Test new Sample</button>
             </div>
             <div id="scan">
-                <img id="sample" ng-src="http://localhost:5000/{{result.image_url}}" />
+                <img id="sample" ng-src="http://localhost:5000{{result.image_url}}" />
             </div>
             <div id="result">
                 <h1>Results</h1>
