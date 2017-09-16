@@ -14,7 +14,7 @@
         <div ng-controller="buehlerController" class="page">
             <div id="intro">
                 <h1>Crop contamination detector</h1>
-                <p>Blabliblablub</p>
+                <p></p>
                 <a ng-click="getResult()" class="button-green">Test new Sample</a>
             </div>
             <div id="result">
@@ -35,8 +35,9 @@
                 <p>Hover over image for contamination details and certainty</p>
             </div>
             <div id="scan">
-                <img id="sample" ng-src="{{result.image_url}}" />
+                <img id="sample" ng-src="{{result.image_url}}" ng-attr-title="{{currentContamination}}" />
             </div>
+            
             <div id="info">
                 <div class="info-box">
                     <h2>Challenge</h2>
