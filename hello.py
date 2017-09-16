@@ -4,7 +4,7 @@ from functools import reduce
 from picamera import PiCamera
 from time import sleep
 
-global camera
+camera = PiCamera()
 
 app = Flask(__name__)
 
@@ -34,11 +34,6 @@ def add_header(response):
     response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
     response.headers['Cache-Control'] = 'public, max-age=0'
     return response
-
-@app.before_first_request
-def do_something_only_once():
-	camera = PiCamera()
-	sleep(1)
 
 # Internal Methods #
 
