@@ -135,16 +135,21 @@ li {
     list-style-type: none;
 }
 
+ul {
+    margin: 0px;
+    padding: 0px;
+}
+
 #intro {
     float: left;
-    width: 75%;
+    width: 100%;
     height: 200px;
 }
 
 #scan {
     float: left;
     clear: left;
-    width: 75%;
+    width: 60%;
     height: 500px;
 
 }
@@ -152,6 +157,7 @@ li {
 #result {
     float: right;
     height: 700px;
+    padding-right: 50px;
 }
 
 #info {
