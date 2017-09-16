@@ -1,19 +1,17 @@
 angular.module('buehlerApp', []).controller ('buehlerController', ['$scope', '$http', function ($scope, $http) {
-     $scope.gettingResult = true;
+    $scope.gettingResult = true;
     $scope.currentContamination = "clean";
     $scope.getResult = function() {
         $scope.gettingResult = true;
         $http.get('/result').then(function(response){
             $scope.result = response.data;
-            console.log($scope.result);
+            var random = (new Date()).toString();
+            $scope.result.image_url = $scope.result.image_url + "?cb=" + random;
             $scope.gettingResult = false;
-            $scope.$apply();
         });
     };
 
     $('#sample').mousemove(function(e){
-        //console.log(e.pageX - this.offsetLeft);
-        //console.log(e.pageY - this.offsetTop);
         mouseX = e.pageX - this.offsetLeft;
         mouseY = e.pageY - this.offsetTop;
         sizing = $scope.result.slicing.size;

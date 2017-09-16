@@ -1,7 +1,7 @@
 import subprocess, json, random, datetime
 from flask import Flask, jsonify, render_template, send_from_directory, url_for
 from functools import reduce
-from picamera import PiCamera
+
 from time import sleep
 
 app = Flask(__name__)
@@ -72,8 +72,6 @@ def prepareData(result):
 	return result
 
 def getResult():
-	camera = PiCamera()
-	sleep(1)
-	camera.capture('/home/pi/web/static/capture.jpg')
+	
 	result = analyize()
 	return prepareData(result)
