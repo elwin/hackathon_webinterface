@@ -1,0 +1,29 @@
+<!doctype html>
+<html ng-app="buehlerApp">
+    <head>
+        <title>Bühler Challenge</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+        <script src="http://localhost:5000/js"></script>
+        <link href="http://localhost:5000/css" rel="stylesheet" />
+    </head>
+    <body>
+        <div ng-controller="buehlerController">
+            <div id="intro">
+                <h1>Bühler Challenge</h1>
+            </div>
+            <div id="scan">
+            </div>
+            <div id="result">
+                <span id="timestamp">Results calculated at {{result.time}}</span><br />
+                <span id="contamination_result">{{result.contaminated ? "Sample is contaminated." : "Sample is clean."}}<br />
+                <table>
+                    <tr>
+                        <td>Clean</td>
+                        <td>{{result.overall.clean}}</td>
+                    </tr>
+            </div>
+            <div id="footer">
+            </div>
+        </div>
+    </body>
+</html>

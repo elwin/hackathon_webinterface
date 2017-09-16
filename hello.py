@@ -5,15 +5,19 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+    return send_from_directory("public", "index.html")
+
+@app.route('/js')
+def js():
+    return send_from_directory("public", "buehler.js")
+
+@app.route('/css')
+def css():
+    return send_from_directory("public", "style.css")
+
+@app.route('/result')
+def result():
 	return jsonify(getResult())
-
-@app.route('/dynamic')
-def other():
-	return render_template('hello.html')
-
-@app.route('/static')
-def alsdkjf():
-	return send_from_directory('templates', 'hello.html')
 
 # Internal Methods #
 
