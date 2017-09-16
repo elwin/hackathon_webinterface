@@ -62,7 +62,7 @@ def prepareData(result):
 		'slices': result['slices'],
 		'time': datetime.datetime.now(),
 		'overall': categoryCount,
-		'contaminated': categoryCount['clean'] >= 0.6,
+		'contaminated': categoryCount['clean'] < 0.8,
 		'slicing': result['slicing']
 	}
 
