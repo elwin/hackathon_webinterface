@@ -1,3 +1,147 @@
+html {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+body {
+    background: #efefef;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font-family: 'Roboto', sans-serif;
+}
+
+div {
+    margin: 0px;
+    padding: 0px;
+    border: 0px; 
+}
+
+h1 {
+    font-size: 75px;
+    color: #222222;
+    font-family: 'Roboto', sans-serif;
+    line-height: 75px;
+    font-weight: normal;
+    font-style: normal;
+    margin: 0px 0px;
+}
+
+h2 {
+    font-size: 24px;
+    color: #222222;
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    line-height: 26px;
+    margin: 10px 0px;
+}
+
+h3 {
+    font-size: 30px;
+    color: #222222;
+    font-family: 'Roboto', sans-serif;
+    line-height: 33px;
+    font-weight: 100;
+    font-style: normal;
+    margin: 15px 0px;
+}
+
+p {
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    color: #222222;
+    line-height: 22px;
+    font-weight: 100;
+    font-style: normal;
+}
+
+span {
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    color: #222222;
+    line-height: 22px;
+    font-weight: 100;
+    font-style: normal;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+em {
+    color: #e60000;
+    font-style: normal;
+}
+
+a {
+    color: #007099;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    line-height: 22px;
+    font-weight: 100;
+    font-style: normal;
+    text-decoration: none;
+}
+
+a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+a:visited, a:hover, a:focus, a:active {
+    color: #005079;
+}
+
+
+a.button-grey {
+    display: inline-block;
+    color: #222222;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 10px;
+    background-color: #dedede; 
+    text-decoration: none;   
+}
+
+a.button-grey:hover {
+    background-color: #bebebe;
+    text-decoration: none;
+}
+
+a.button-green {
+    display: inline-block;
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 10px;
+    background-color: #6a7d39;   
+    text-decoration: none; 
+}
+
+a.button-green:hover {
+    background-color: #4A5D19;
+    text-decoration: none;
+}
+
+span.button-green-arrow {
+    display: inline-block;
+    width: 0; 
+    height: 0; 
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 20px solid #6a7d39;
+    position: relative;
+    top: 16px;
+}
+
+a.button-green:hover + span.button-green-arrow {
+    border-left-color: #4A5D19;
+    text-decoration: none;
+}
+
+
 #intro {
     float: left;
     width: 500px;
