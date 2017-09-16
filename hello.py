@@ -4,6 +4,8 @@ from functools import reduce
 from picamera import PiCamera
 from time import sleep
 
+global camera
+
 app = Flask(__name__)
 
 @app.route('/')
