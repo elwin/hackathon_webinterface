@@ -35,7 +35,7 @@ def add_header(response):
 categories = ['straw', 'stone', 'clean', 'pumpkin', 'red_beans', 'quinoa', 'lentils', 'dried_bean', 'fines']
 
 def analyize():
-	process = subprocess.Popen(['java', '-jar', 'grain.jar', 'static/capture.jpg', '100'], stdout=subprocess.PIPE)
+	process = subprocess.Popen(['java', '-jar', 'grain.jar', 'static/capture.jpg', '25'], stdout=subprocess.PIPE)
 	return json.loads(process.stdout.read())
 
 def prepareData(result):
