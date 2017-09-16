@@ -1,5 +1,5 @@
 import random, datetime
-from flask import Flask, jsonify, render_template, send_from_directory
+from flask import Flask, jsonify, render_template, send_from_directory, url_for
 from functools import reduce
 app = Flask(__name__)
 
@@ -29,6 +29,7 @@ def getResult():
 	average = averageSlices(sliceValues)
 
 	result = {
+		'url': url_for('static', filename='image.png'),
 		'contaminated': contaminated(average),
 		'overall': average,
 		'slices': slices,
